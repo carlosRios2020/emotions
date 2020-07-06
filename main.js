@@ -85,7 +85,7 @@ function  validadPalabrasNegativas(){
         }else{
             console.log('no hay mensaje para iterar')
         } 
-        return respuesta2.innerHTML = "la respuesta son "+ salida + "y son " + indices2 + " elemento de su comentario Negativas" + conteoEmociones(indices1, indices2);
+        return respuesta2.innerHTML = "la respuesta son "+ salida + "y son " + indices2 + " elemento de su comentario Negativas";
 }
 
 function conteoEmociones(indices1, indices2){
