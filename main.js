@@ -1,26 +1,5 @@
 
-
 //variables
-
-const listadoEmociones = [
-  "amor",
-  "paz",
-  "feliz",
-  "libertad",
-  "contento",
-  "animado",
-  "odio",
-  "amoroso",
-  "enojado",
-  "mal",
-  "infeliz",
-  "molesto",
-  "cansado",
-  "bravo",
-  "incomodo",
-  "triste",
-  "deprimido",
-];
 
 var texto = "";
 
@@ -43,6 +22,7 @@ function cargarEventlistener() {
 var publicacion = texto.value + ',';
 
 function traerTexto() {
+
     let i,j;
     let salida = [];
    
@@ -52,28 +32,26 @@ function traerTexto() {
 
         for(i = 0; i <= textToArreglo.length; i++){
 
-            for(j=  0; j <=listadoEmociones.length;j++){
+            var textoActual = textToArreglo[i];
 
-                if(textToArreglo[i] == listadoEmociones[j]){
-                    
-                    var textoActual = textToArreglo[i];
-                    if(textToArreglo[i] == listadoEmociones[j]){
-                        salida.push(textoActual);
-                    }else{
-                        continue;
-                    }
-                    console.log("tenemos " + salida.length + " elementos iguales");
+            for(j=  0; j <=listadoEmocionesPositivas.length;j++){
+
+                if(textToArreglo[i] == listadoEmocionesPositivas[j]){
+
+                    salida.push(textoActual);
+                    var indices = salida.length - 1;
+            
+                    console.log(" tenemos " + indices + " elementos iguales");
 
                 }else{
-
-                    console.log('no hay elementos iguales');
+                     continue;
                 }
             }
        }
     }else{
         console.log('no hay mensaje para iterar')
     } 
-    return document.write("la respuesta son "+ salida + "y son " + salida.length + " elemento de su comentario");
+    return document.write("la respuesta son "+ salida + "y son " + indices + " elemento de su comentario positivos");
 }
 
 

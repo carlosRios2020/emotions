@@ -1,10 +1,15 @@
 
-*{
-    margin: 0px auto;
-    display: block;
-}
 #enviar{
     margin-top: 15px;
     background-color: blue;
     color: white;
+}
+.container{
+    display: block;
+    margin: 0px auto;
+    margin-top: 15px;
+}
+#texto{
+    height: auto;
+    width: 400px;
 }
