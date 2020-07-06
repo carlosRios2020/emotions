@@ -1,0 +1,10 @@
+
+*{
+    margin: 0px auto;
+    display: block;
+}
+#enviar{
+    margin-top: 15px;
+    background-color: blue;
+    color: white;
+}
