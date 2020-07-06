@@ -1,5 +1,11 @@
 
-#enviar{
+#enviar {
+    margin-top: 15px;
+    background-color: blue;
+    color: white;
+}
+    
+#enviar-2{
     margin-top: 15px;
     background-color: blue;
     color: white;
