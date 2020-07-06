@@ -1,5 +1,4 @@
 
-"use estrict"
 
 //variables
 
@@ -10,7 +9,7 @@ const listadoEmociones = [
   "libertad",
   "contento",
   "animado",
-  "feliz",
+  "odio",
   "amoroso",
   "enojado",
   "mal",
@@ -23,9 +22,9 @@ const listadoEmociones = [
   "deprimido",
 ];
 
-publicacion = false;
+var texto = "";
 
-const texto  = document.getElementById('texto');
+var texto  = document.getElementById('texto');
 const btn = document.getElementById('enviar');
 const respuesta = document.getElementById('mostrar-publicacion');
 
@@ -38,25 +37,35 @@ function cargarEventlistener() {
 
 }
 
-
 //funciones
 
 
+var publicacion = texto.value + ',';
+
 function traerTexto() {
     let i,j;
-    let salida = 0;
-    const textToArreglo = [texto.value];
+    let salida = [];
+   
+    const textToArreglo = texto.value.split(" ");
     
     if(textToArreglo.length > 0 || textToArreglo != undefined){
 
-        for(i = 0; i <= listadoEmociones.length; i++){
+        for(i = 0; i <= textToArreglo.length; i++){
 
-            for(j=  0; j <=textToArreglo.length;j++){
+            for(j=  0; j <=listadoEmociones.length;j++){
 
                 if(textToArreglo[i] == listadoEmociones[j]){
-                     salida = salida + 1
-                    console.log("tenemos " + listadoEmociones[j] +" elementos iguales");
+                    
+                    var textoActual = textToArreglo[i];
+                    if(textToArreglo[i] == listadoEmociones[j]){
+                        salida.push(textoActual);
+                    }else{
+                        continue;
+                    }
+                    console.log("tenemos " + salida.length + " elementos iguales");
+
                 }else{
+
                     console.log('no hay elementos iguales');
                 }
             }
@@ -64,7 +73,7 @@ function traerTexto() {
     }else{
         console.log('no hay mensaje para iterar')
     } 
-    return console.log("la respuesta son "+ salida);
+    return document.write("la respuesta son "+ salida + "y son " + salida.length + " elemento de su comentario");
 }
 
 
