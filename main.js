@@ -85,18 +85,18 @@ function  validadPalabrasNegativas(){
         }else{
             console.log('no hay mensaje para iterar')
         } 
-        return respuesta2.innerHTML = "la respuesta son "+ salida + "y son " + indices2 + " elemento de su comentario Negativas";
+        return respuesta2.innerHTML = "la respuesta son "+ salida + "y son " + indices2 + " elemento de su comentario Negativas"+ conteoEmociones() ;
 }
 
 function conteoEmociones(indices1, indices2){
 
     let publicable = false;
 
-    if(indices1 > indices2 ){
+    if(indices1 > indices2 || indices1 == indices2 ){
         publicable = true;
-        alert("su mensaje es positivo y se puede publicar")
+        alert("su mensaje es positivo y se puede publicar");
     } else{
-        alert("su mensaje no cumple nuestras politicas ** sea mas positiv@");
+        document.write(" su publicacion no se puede publicar. consejo sea mas positiv@");
     }
     return documet.write(`su aprobacion para publicar es ${publicable}`);
 }
