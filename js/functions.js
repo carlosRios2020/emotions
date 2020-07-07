@@ -9,6 +9,13 @@ const respuesta2 = document.getElementById('mostrar-publicacion2');
 var indices1 = 0;
 var indices2 = 0;
 
+//pesos
+
+var peso1 = 1;
+var peso2 = 1;
+var peso3 = 1;
+var peso4 = 1;
+
 //listeners
 cargarEventlistener();
 
@@ -21,8 +28,6 @@ function cargarEventlistener() {
 
 //funciones
 
-
-var publicacion = texto.value + ',';
 
 function validarPalabrasPositivas() {
 
@@ -50,7 +55,7 @@ function validarPalabrasPositivas() {
             }
        }
     }else{
-        console.log('no hay mensaje para iterar')
+        console.log('no hay mensaje para iterar');
     } 
     return respuesta.innerHTML = "El mensaje contiene "+ salida + "y son " + indices1 + " elemento de su comentario positivos";
 }
