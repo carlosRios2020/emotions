@@ -62,5 +62,7 @@ listadoEmocionesNegativas = [
   "tarde",
   "dañado",
   "averiado",
-  "peor"
+  "peor",
+  "dolor",
+  "miedo"
 ]

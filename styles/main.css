@@ -3,19 +3,29 @@
     margin-top: 15px;
     background-color: blue;
     color: white;
+    margin: 0px auto;
 }
     
 #enviar-2{
-    margin-top: 5px;
+    margin-top: 10px;
     background-color: blue;
     color: white;
+    margin: 0px auto;
+    text-align: center;
+    
+}
+#botones{
+    margin-top: 15px;
+    width: 600px;
+    
 }
 .container{
-    display: block;
     margin: 0px auto;
-    margin-top: 15px;
+    width: 600px;
+    height: 600px;
 }
 #texto{
+    margin: 15px;
     height: auto;
     width: 400px;
 }

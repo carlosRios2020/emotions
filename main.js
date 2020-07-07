@@ -5,9 +5,11 @@ var texto = "";
 
 var texto  = document.getElementById('texto');
 const btn = document.getElementById('enviar');
-const respuesta = document.getElementById('mostrar-publicacion');
 const btn2 = document.getElementById('enviar-2');
+const btn3 = document.getElementById('enviar-3');
+const respuesta = document.getElementById('mostrar-publicacion');
 const respuesta2 = document.getElementById('mostrar-publicacion2');
+
 var indices1 = 0;
 var indices2 = 0;
 
@@ -18,6 +20,7 @@ function cargarEventlistener() {
 
     btn.addEventListener('click', validarPalabrasPositivas);
     btn2.addEventListener('click', validadPalabrasNegativas);
+    btn3.addEventListener('click', esPublicable);
 }
 
 //funciones
@@ -28,7 +31,7 @@ var publicacion = texto.value + ',';
 function validarPalabrasPositivas() {
 
     let i,j;
-    let salida = [];
+    var salida = [];
    
     const textToArreglo = texto.value.split(" ");
     
@@ -53,14 +56,14 @@ function validarPalabrasPositivas() {
     }else{
         console.log('no hay mensaje para iterar')
     } 
-    return respuesta.innerHTML = "la respuesta son "+ salida + "y son " + indices1 + " elemento de su comentario positivos";
+    return respuesta.innerHTML = "El mensaje contiene "+ salida + "y son " + indices1 + " elemento de su comentario positivos";
 }
 
 
 function  validadPalabrasNegativas(){
 
         let i,j;
-        let salida = [];
+        var salida2 = [];
        
         const textToArreglo = texto.value.split(" ");
         
@@ -74,8 +77,8 @@ function  validadPalabrasNegativas(){
     
                     if(textToArreglo[i] == listadoEmocionesNegativas[j]){
     
-                        salida.push(textoActual);
-                        indices2 = salida.length - 1;
+                        salida2.push(textoActual);
+                        indices2 = salida2.length - 1;
     
                     } else {
                          continue;
@@ -86,20 +89,22 @@ function  validadPalabrasNegativas(){
 
             console.log('no hay mensaje para iterar')
         } 
-    return respuesta2.innerHTML = "la respuesta son "+ salida + "y son " + indices2 + " elemento de su comentario Negativas";
+
+    return respuesta2.innerHTML = "El mensaje contiene "+ salida2 + "y son " + indices2 + " elemento de su comentario Negativas";
 }
 
-let publicable = false;
+function esPublicable(){
+    validadPalabrasNegativas();
+    validadPalabrasNegativas()
+    let exPublicable = false;
 
-    if( indices1 > indices2 || indices1 == indices2 ){
-
-        publicable = true;
-
-        alert("su mensaje es positivo y se puede publicar");
+    if( indices1 > indices2 && texto.value != undefined ){
+        exPublicable = true;
+        document.write("su mensaje es publicable");
 
     } else {
+        document.write('no se puede publicar su mensaje')
+    }
 
-        document.write(" su publicacion no se puede publicar. consejo sea mas positiv@"); 
-    }       
-
+}
 
