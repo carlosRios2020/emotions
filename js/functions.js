@@ -5,16 +5,29 @@ const btn2 = document.getElementById('enviar-2');
 const btn3 = document.getElementById('enviar-3');
 const respuesta = document.getElementById('mostrar-publicacion');
 const respuesta2 = document.getElementById('mostrar-publicacion2');
+const publicacion = document.getElementById('publicacion');
 
-var indices1 = 0;
-var indices2 = 0;
+var ResultadoConteo;
+
+var indices1 = [];
+var indices2 = [];
+var salida2 = [];
+var salida = [];
+var juntarConteos = [];
+
 
 //pesos
 
-var peso1 = 1;
-var peso2 = 1;
-var peso3 = 1;
-var peso4 = 1;
+var Pesos = [1,1,1,1];
+
+
+// valores de las emociones
+const negaivo = -1;
+const positivo = 1;
+
+// tasa de aprendizaje
+
+const tasaAprendizaje = 1;
 
 //listeners
 cargarEventlistener();
@@ -28,28 +41,30 @@ function cargarEventlistener() {
 
 //funciones
 
-
 function validarPalabrasPositivas() {
 
-    let i,j;
-    var salida = [];
-   
+    let i,j, x;
+    
     const textToArreglo = texto.value.split(" ");
     
-    if(textToArreglo.length > 0 || textToArreglo != undefined){
+    if( textToArreglo.length > 0 || textToArreglo != undefined ){
 
-        for(i = 0; i <= textToArreglo.length; i++){
+        for( i = 0; i <= textToArreglo.length; i++ ){
 
-            var textoActual = textToArreglo[i];
+            
+            for( j=  0; j <= listadoEmocionesPositivas.length; j++ ){
+                
+                var textoActual = textToArreglo[i];
 
-            for(j=  0; j <=listadoEmocionesPositivas.length;j++){
+                if( textoActual == listadoEmocionesPositivas[j]){
 
-                if(textToArreglo[i] == listadoEmocionesPositivas[j]){
-
-                    salida.push(textoActual);
-                    indices1 = salida.length - 1;
-
+                  for( x = 0; x >= salida.length;  x++){
+                        salida.push(salida[x]= 1);
+                        juntarConteos.push(salida);
+                  };
+                      
                 } else {
+
                      continue;
                 }
             }
@@ -57,39 +72,62 @@ function validarPalabrasPositivas() {
     }else{
         console.log('no hay mensaje para iterar');
     } 
-    return respuesta.innerHTML = "El mensaje contiene "+ salida + "y son " + indices1 + " elemento de su comentario positivos";
+    return respuesta.innerHTML = "El mensaje contiene "+ juntarConteos + "y son " + indices1 + " elemento de su comentario positivos";
 }
 
 
 function  validadPalabrasNegativas(){
 
         let i,j;
-        var salida2 = [];
-       
+    
         const textToArreglo = texto.value.split(" ");
         
         if(textToArreglo.length > 0 || textToArreglo != undefined){
     
             for(i = 0; i <= textToArreglo.length; i++){
     
-                var textoActual = textToArreglo[i];
-    
                 for(j=  0; j <=listadoEmocionesNegativas.length;j++){
+                    
+                    var textoActual = textToArreglo[i];
     
-                    if(textToArreglo[i] == listadoEmocionesNegativas[j]){
+                    if( textoActual == listadoEmocionesNegativas[j]){
     
-                        salida2.push(textoActual);
-                        indices2 = salida2.length - 1;
-    
+                        for( x = 0; x >= salida2.length;  x++){
+                            salida2.push(salida2[x]= -1);
+                            juntarConteos = salida.concat(salida2);
+                        };
+
                     } else {
+
                          continue;
+                    }
+
+                    if(indices2 > 2 ){
+
+                        ResultadoConteo = 1;
+
+                    }if(indices2 <= 2){
+
+                        ResultadoConteo = -1;
                     }
                 }
            }
         } else {
 
-            console.log('no hay mensaje para iterar')
+            console.log('no hay mensaje para iterar');
         } 
 
     return respuesta2.innerHTML = "El mensaje contiene "+ salida2 + "y son " + indices2 + " elemento de su comentario Negativas";
 }
+
+function Sumar(){
+    let y,v;
+    let vo =[];
+    for(y=0; y>= Pesos.length; y++){
+        for(v=0; v>= juntarConteos.length; v++) {
+            vo = peso[v] * juntarConteos[y];
+        }
+    }
+    return console.log(vo);
+}
+

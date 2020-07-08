@@ -64,5 +64,6 @@ listadoEmocionesNegativas = [
   "averiado",
   "peor",
   "dolor",
-  "miedo"
+  "miedo",
+  "malo"
 ]
