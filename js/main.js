@@ -2,21 +2,19 @@
 
 function esPublicable(){
 
-    validadPalabrasNegativas();
-    validadPalabrasNegativas();
-    
+    setValores();
     
     let exPublicable = false;
     
-    if( indices1 > indices2 && texto.value != undefined ){
+    if( positiva.length > negativa.length && texto.value != undefined ){
 
         exPublicable = true;
 
-        publicacion.innerHTML = "Se puede publicar su mensaje " + " salida de la Neurona es igual a "+ ResultadoConteo;
+        publicacion.innerHTML = "Se puede publicar su mensaje " + " salida de la Neurona es igual a 1";
 
     } else {
       
-        publicacion.innerHTML = "no se puede publicar su mensaje " + " salida de la Neurona es igual a "+ ResultadoConteo;
+        publicacion.innerHTML = "no se puede publicar su mensaje " + " salida de la Neurona es igual a -1";
      
     }
     
