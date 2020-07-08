@@ -9,12 +9,12 @@ var ResultadoConteo;
 
 var indices = [];
 var conteo = [];
-var salida = [];
+var salidas = [];
 var juntarConteos = [];
+
 var x = [], y=[];
 var negativa = [];
 var positiva = [];
-
 
 
 //pesos
@@ -44,67 +44,50 @@ function cargarEventlistener() {
 
 function  validadPalabrasPositivas(){
 
-    let i,j;
+    let i,j, y;
 
     const textToArreglo = texto.value.split(" ");
+
+    for(j=0; j<textToArreglo.length; j++){
+        for(i=0; i<listadoEmocionesPositivas.length; i++){          
+      if(textToArreglo[j] == listadoEmocionesPositivas[i]){    
+          salidas.push(1); 
+            
+             }
+      }
+      
+      
+      for(y=0; y<listadoEmocionesNegativas.length; y++){
+          if(textToArreglo[j]==listadoEmocionesNegativas[y]){
+              salidas.push(-1);
+          }
+      }
+      }
     
-    if(textToArreglo.length > 0 || textToArreglo != undefined){
-
-        for(i = 0; i <= textToArreglo.length; i++){
-
-            for(j=  0; j<= listadoEmocionesPositivas.length;j++){
-
-                if( textToArreglo[i] == listadoEmocionesPositivas[j]){
-
-                    salida.push(textToArreglo[i]);
-                    positiva.push(textToArreglo[i]);
-                    console.log(salida)
-
-                } else if( textToArreglo[i] == listadoEmocionesNegativas[j]) {
-
-                    salida.push(textToArreglo[i]);
-                    negativa.push(textToArreglo[i]);
-                    console.log(salida)
-
-                    continue;
-                        
-                }else{
-
-                    console.log("palabra nueva, no aprendio la neurona");
-                }
-            }
-        }
-
-    }
-return respuesta.innerHTML = "El mensaje contiene "+ salida;
+   
+return respuesta.innerHTML = "El mensaje contiene "+ salidas;
 }
 
 
 function Sumar(){
-    let y,v;
-    let vo =[];
-    for(y=0; y>= Pesos.length; y++){
-        for(v=0; v>= juntarConteos.length; v++) {
-            vo = peso[v] * salida[y];
+    let vo =[],v;
+    let contador;
+    for(y=0; y< Pesos.length; y++){
+        v++;
+        for(v=0; v<= salidas.length; v++) {
+            let result1 = Pesos[y];
+            let result2 = salidas[v]
+            let resultadoSuma = result1 * result2;
+            vo.push(resultadoSuma)
+            y++;
         }
+        
     }
-    return console.log(vo);
+    
+    return console.log(contador);
 }
-function setValores(){
 
-    if(salida.length != 0){
-        positiva.forEach(element => {
-               y.push(element = 1)
-               console.log(y)
-        });
-        negativa.forEach(itemt =>{
-              x.push(item = -1);
-              console.log(x)
-        })
-    }
-    return x,y;
 
-}
 
 
 

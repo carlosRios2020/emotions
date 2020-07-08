@@ -2,15 +2,15 @@
 
 function esPublicable(){
 
-    setValores();
-    
+    Sumar()
+
     let exPublicable = false;
-    
+
     if( positiva.length > negativa.length && texto.value != undefined ){
 
         exPublicable = true;
 
-        publicacion.innerHTML = "Se puede publicar su mensaje " + " salida de la Neurona es igual a 1";
+        publicacion.innerHTML = "Se puede publicar su mensaje " + " salida de la Neurona es igual a";
 
     } else {
       
