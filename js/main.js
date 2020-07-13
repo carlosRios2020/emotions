@@ -3,6 +3,8 @@
 function esPublicable(){
 
     Sumar();
+    salidasEsperadas()
+    error();    
 
     let exPublicable = false;
     // funcion escalon o umbral 

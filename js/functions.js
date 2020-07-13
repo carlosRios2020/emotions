@@ -9,6 +9,9 @@ var contador = 0;
 var salidas = [];
 var negativos ;
 var positivos;
+var salidaExperada;
+var Error;
+var entrada = [];
 
 
 //pesos
@@ -37,7 +40,7 @@ function cargarEventlistener() {
 function validarEmociones() {
 
     let i, j, y;
-    const entrada = texto.value.split(" ");
+    entrada = texto.value.split(" ");
 
     for (j = 0; j < entrada.length; j++) {
 
@@ -78,6 +81,53 @@ function Sumar() {
 }
 
 
+function salidasEsperadas(){
+    
+    if(salidas[0] == 1 && salidas[1] == 1 && salidas[2] == 1){
+        salidaExperada = 1;
+    }else if(salidas[0] == -1 && salidas[1] == -1 && salidas[2] == -1){
+        salidaExperada = -1;
+    } else if(salidas[0] == 1 && salidas[1] == 1 && salidas[2] == -1 && salidas[3] == 1){
+        salidaExperada = 1;
+    }else if(salidas[0] == -1 && salidas[1] == -1){
+        salidaExperada = -1;
+    } else if(salidas[0] == 1 && salidas[1] == -1 && salidas[2] == 1 && salidas[3] == -1 ){
+       salidaExperada = -1;
+    }
+}
 
+function error(){
+    if(parseInt(contador) != parseInt(salidaExperada)){
+        correccion();
+    }else{
+        console.log("no es necesario aprendizaje");
+    }
+}
 
+function correccion(){
+     Error = parseInt(salidaExperada) - parseInt(contador);
+     return recalcularPesos();
+}
 
+function recalcularPesos(){
+
+    //ajuste de pesos sinapticos 
+    let wo11 = (tasaAprendizaje * Error) * salidas[0];
+    let wo21 = (tasaAprendizaje * Error) * salidas[1];
+    let wo31 = (tasaAprendizaje * Error) * salidas[2];
+    let wo41 = (tasaAprendizaje * Error) * salidas[3];
+
+    // calculando nuevos pesos sinapticos
+    let wo12 = Pesos[0] + wo11;
+    let wo22 = Pesos[1] + wo21;
+    let wo32 = Pesos[2] + wo31;
+    let wo42 = Pesos[3] + wo41;
+  
+    Pesos[0] = wo12
+    Pesos[1]= wo22;
+    Pesos[2] = wo32;
+    Pesos[3]= wo42;
+
+    console.log(Pesos)
+    return Sumar();
+}   
