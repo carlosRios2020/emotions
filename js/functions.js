@@ -10,12 +10,12 @@ var salidas = [];
 var negativos ;
 var positivos;
 var salidaExperada;
-var Error;
+var diferencia;
 var entrada = [];
 
 
 //pesos
-var Pesos = [-1, -2, -1, -1];
+var Pesos = [25, 14, -1, -1];
 
 
 // valores de las emociones
@@ -77,45 +77,53 @@ function Sumar() {
             y++;
         }
     }
-    return contador;
+    salidasEsperadas()
+    return error();
 }
 
 
 function salidasEsperadas(){
     
-    if(salidas[0] == 1 && salidas[1] == 1 && salidas[2] == 1){
+    if(salidas[0] == 1 && salidas[1] == 1 && salidas[2] == 1 &&  salidas[3] == 1
+    || salidas[0] == 1 && salidas[1] == 1 && salidas[2] == -1 &&  salidas[3] == 1
+    || salidas[0] == 1 && salidas[1] == 1 && salidas[2] == 1 && salidas[3] == -1 
+    || salidas[0] == -1 && salidas[1] == 1 && salidas[2] == 1 && salidas[3] == 1
+    || salidas[0] == 1 && salidas[1] == -1 && salidas[2] == 1 && salidas[3] == 1){
+
         salidaExperada = 1;
-    }else if(salidas[0] == -1 && salidas[1] == -1 && salidas[2] == -1){
+
+    }else if(salidas[0] == 1 && salidas[1] == 1 && salidas[2] == -1 && salidas[3] == -1
+        || salidas[0] == 1 && salidas[1] == -1 && salidas[2] == -1 && salidas[3] == -1
+        || salidas[0] == 1 && salidas[1] == -1 && salidas[2] == -1 && salidas[3] == 1
+        || salidas[0] == 1 && salidas[1] == -1 && salidas[2] == 1 && salidas[3] == -1
+        || salidas[0] == -1 && salidas[1] == -1 && salidas[2] == -1 && salidas[3] == 1
+        || salidas[0] == -1 && salidas[1] == -1 && salidas[2] == -1 && salidas[3] == -1){
+
         salidaExperada = -1;
-    } else if(salidas[0] == 1 && salidas[1] == 1 && salidas[2] == -1 && salidas[3] == 1){
-        salidaExperada = 1;
-    }else if(salidas[0] == -1 && salidas[1] == -1){
-        salidaExperada = -1;
-    } else if(salidas[0] == 1 && salidas[1] == -1 && salidas[2] == 1 && salidas[3] == -1 ){
-       salidaExperada = -1;
     }
 }
 
 function error(){
-    if(parseInt(contador) != parseInt(salidaExperada)){
-        correccion();
+
+    diferencia = parseInt(contador) - parseInt(salidaExperada);
+
+    if( diferencia != 0 ){
+        console.log( "funcion error es igual " + diferencia + " Recalculando pesos sinapticos...");
+        recalcularPesos();
     }else{
-        console.log("no es necesario aprendizaje");
+        console.log("No es necesario aprendizaje - la Neurona Aprendio");
+        console.log( "funcion error es igual " + diferencia);
     }
 }
 
-function correccion(){
-     Error = parseInt(salidaExperada) - parseInt(contador);
-     return recalcularPesos();
-}
 
 function recalcularPesos(){
 
     //ajuste de pesos sinapticos 
-    let wo11 = (tasaAprendizaje * Error) * salidas[0];
-    let wo21 = (tasaAprendizaje * Error) * salidas[1];
-    let wo31 = (tasaAprendizaje * Error) * salidas[2];
-    let wo41 = (tasaAprendizaje * Error) * salidas[3];
+    let wo11 = (tasaAprendizaje * diferencia) * salidas[0];
+    let wo21 = (tasaAprendizaje * diferencia) * salidas[1];
+    let wo31 = (tasaAprendizaje * diferencia) * salidas[2];
+    let wo41 = (tasaAprendizaje * diferencia) * salidas[3];
 
     // calculando nuevos pesos sinapticos
     let wo12 = Pesos[0] + wo11;
@@ -123,11 +131,17 @@ function recalcularPesos(){
     let wo32 = Pesos[2] + wo31;
     let wo42 = Pesos[3] + wo41;
   
+    //nuevos pesos 
+
     Pesos[0] = wo12
     Pesos[1]= wo22;
     Pesos[2] = wo32;
     Pesos[3]= wo42;
 
     console.log(Pesos)
-    return Sumar();
+
+    if(Pesos[0] != undefined){
+        return Sumar();
+    }
+   
 }   
