@@ -16,7 +16,7 @@ var salidaReal;
 
 
 //pesos
-var Pesos = [-5, 5, 10, 10];
+var Pesos = [-5, 5, -50, 10];
 
 
 // valores de las emociones
@@ -113,7 +113,8 @@ function salidasEsperadas(){
         || salidas[0] == -1 && salidas[1] == -1 && salidas[2] == -1 && salidas[3] == 1
         || salidas[0] == -1 && salidas[1] == -1 && salidas[2] == -1 && salidas[3] == -1
         || salidas[0] == -1 && salidas[1] == 1 && salidas[2] == -1 && salidas[3] == 1
-        || salidas[0] == -1 && salidas[1] == 1 && salidas[2] == -1 && salidas[3] == -1) {
+        || salidas[0] == -1 && salidas[1] == 1 && salidas[2] == -1 && salidas[3] == -1
+        || salidas[0] == -1 && salidas[1] == -1 && salidas[2] == 1 && salidas[3] == 1) {
 
         salidaExperada = -1;
     }
