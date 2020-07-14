@@ -12,6 +12,7 @@ var positivos;
 var salidaExperada;
 var diferencia;
 var entrada = [];
+var salidaReal;
 
 
 //pesos
@@ -38,11 +39,12 @@ function cargarEventlistener() {
 //funciones
 
 
-    function validarEmociones() {
+    function validarEmociones(){
 
         let i, j, y;
         entrada = texto.value.split(" ");
-        if ( entrada.length < 4) {
+
+        if ( entrada.length < 4 ||entrada.length >4 ) {
             alert("lo siento debes escribir 4 palabras");
         } else {
 
@@ -68,7 +70,7 @@ function cargarEventlistener() {
 }
 
 
-function Sumar() {
+function Sumar(){
 
     let vo = [], v;
     for (y = 0; y < Pesos.length; y++) {
@@ -82,12 +84,19 @@ function Sumar() {
             y++;
         }
     }
-    salidasEsperadas()
+
+    if(contador <0){
+        salidaReal = -1;
+    }else{
+        salidaReal = 1;
+    }
+
+    salidasEsperadas();
     return error();
 }
 
 
-function salidasEsperadas() {
+function salidasEsperadas(){
 
     if (salidas[0] == 1 && salidas[1] == 1 && salidas[2] == 1 && salidas[3] == 1
         || salidas[0] == 1 && salidas[1] == 1 && salidas[2] == -1 && salidas[3] == 1
@@ -103,18 +112,19 @@ function salidasEsperadas() {
         || salidas[0] == 1 && salidas[1] == -1 && salidas[2] == 1 && salidas[3] == -1
         || salidas[0] == -1 && salidas[1] == -1 && salidas[2] == -1 && salidas[3] == 1
         || salidas[0] == -1 && salidas[1] == -1 && salidas[2] == -1 && salidas[3] == -1
-        || salidas[0] == -1 && salidas[1] == 1 && salidas[2] == -1 && salidas[3] == 1) {
+        || salidas[0] == -1 && salidas[1] == 1 && salidas[2] == -1 && salidas[3] == 1
+        || salidas[0] == -1 && salidas[1] == 1 && salidas[2] == -1 && salidas[3] == -1) {
 
         salidaExperada = -1;
     }
 }
 
-function error() {
+function error(){
 
-    diferencia = parseInt(contador) - parseInt(salidaExperada);
+    diferencia = salidaExperada - salidaReal;
 
     if (diferencia != 0) {
-        console.log("funcion error es igual " + diferencia + " Recalculando pesos sinapticos...");
+        publicacion.innerHTML = "funcion error es igual " + diferencia + " Recalculando pesos sinapticos...";
         recalcularPesos();
     } else {
         console.log("No es necesario aprendizaje - la Neurona Aprendio");
@@ -123,7 +133,7 @@ function error() {
 }
 
 
-function recalcularPesos() {
+function recalcularPesos(){
 
     //ajuste de pesos sinapticos 
     let wo11 = (tasaAprendizaje * diferencia) * salidas[0];
@@ -143,11 +153,10 @@ function recalcularPesos() {
     Pesos[1] = wo22;
     Pesos[2] = wo32;
     Pesos[3] = wo42;
-
-    console.log(Pesos)
+ 
+    publicacion.innerHTML =  "los pesos cambiados son " + Pesos;
 
     if (Pesos[0] != undefined) {
         return Sumar();
     }
-
 }   
