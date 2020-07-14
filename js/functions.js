@@ -114,7 +114,8 @@ function salidasEsperadas(){
         || salidas[0] == -1 && salidas[1] == -1 && salidas[2] == -1 && salidas[3] == -1
         || salidas[0] == -1 && salidas[1] == 1 && salidas[2] == -1 && salidas[3] == 1
         || salidas[0] == -1 && salidas[1] == 1 && salidas[2] == -1 && salidas[3] == -1
-        || salidas[0] == -1 && salidas[1] == -1 && salidas[2] == 1 && salidas[3] == 1) {
+        || salidas[0] == -1 && salidas[1] == -1 && salidas[2] == 1 && salidas[3] == 1
+        || salidas[0] == -1 && salidas[1] == 1 && salidas[2] == 1 && salidas[3] == -1) {
 
         salidaExperada = -1;
     }
@@ -125,7 +126,7 @@ function error(){
     diferencia = salidaExperada - salidaReal;
 
     if (diferencia != 0) {
-        publicacion.innerHTML = "funcion error es igual " + diferencia + " Recalculando pesos sinapticos...";
+        console.log("funcion error es igual " + diferencia + " Recalculando pesos sinapticos...");
         recalcularPesos();
     } else {
         console.log("No es necesario aprendizaje - la Neurona Aprendio");
