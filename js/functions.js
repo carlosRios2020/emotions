@@ -16,7 +16,7 @@ var salidaReal;
 
 
 //pesos
-var Pesos = [-5, 5, -50, 10];
+var Pesos = [0, 0, 0, 0];
 
 
 // valores de las emociones
@@ -98,24 +98,9 @@ function Sumar(){
 
 function salidasEsperadas(){
 
-    if (salidas[0] == 1 && salidas[1] == 1 && salidas[2] == 1 && salidas[3] == 1
-        || salidas[0] == 1 && salidas[1] == 1 && salidas[2] == -1 && salidas[3] == 1
-        || salidas[0] == 1 && salidas[1] == 1 && salidas[2] == 1 && salidas[3] == -1
-        || salidas[0] == -1 && salidas[1] == 1 && salidas[2] == 1 && salidas[3] == 1
-        || salidas[0] == 1 && salidas[1] == -1 && salidas[2] == 1 && salidas[3] == 1) {
-
+    if (salidas[0] + salidas[1] + salidas[2] + salidas[3]  > 0){
         salidaExperada = 1;
-
-    } else if (salidas[0] == 1 && salidas[1] == 1 && salidas[2] == -1 && salidas[3] == -1
-        || salidas[0] == 1 && salidas[1] == -1 && salidas[2] == -1 && salidas[3] == -1
-        || salidas[0] == 1 && salidas[1] == -1 && salidas[2] == -1 && salidas[3] == 1
-        || salidas[0] == 1 && salidas[1] == -1 && salidas[2] == 1 && salidas[3] == -1
-        || salidas[0] == -1 && salidas[1] == -1 && salidas[2] == -1 && salidas[3] == 1
-        || salidas[0] == -1 && salidas[1] == -1 && salidas[2] == -1 && salidas[3] == -1
-        || salidas[0] == -1 && salidas[1] == 1 && salidas[2] == -1 && salidas[3] == 1
-        || salidas[0] == -1 && salidas[1] == 1 && salidas[2] == -1 && salidas[3] == -1
-        || salidas[0] == -1 && salidas[1] == -1 && salidas[2] == 1 && salidas[3] == 1
-        || salidas[0] == -1 && salidas[1] == 1 && salidas[2] == 1 && salidas[3] == -1) {
+    } else if (salidas[0] + salidas[1] + salidas[2] + salidas[3] <=0) {
 
         salidaExperada = -1;
     }
@@ -130,7 +115,7 @@ function error(){
         recalcularPesos();
     } else {
         console.log("No es necesario aprendizaje - la Neurona Aprendio");
-        console.log("funcion error es igual " + diferencia);
+        console.log("funcion error es igual " + diferencia + " nuevos pesos " + Pesos);
     }
 }
 
