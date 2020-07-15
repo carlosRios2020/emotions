@@ -13,7 +13,7 @@ var salidaExperada;
 var diferencia;
 var entrada = [];
 var salidaReal;
-
+var iteracion =0;
 
 //pesos
 var Pesos = [0, 0, 0, 0];
@@ -72,6 +72,8 @@ function cargarEventlistener() {
 
 function Sumar(){
 
+    iteracion ++;
+    
     let vo = [], v;
     for (y = 0; y < Pesos.length; y++) {
         v++;
@@ -115,7 +117,7 @@ function error(){
         recalcularPesos();
     } else {
         console.log("No es necesario aprendizaje - la Neurona Aprendio");
-        console.log("funcion error es igual " + diferencia + " nuevos pesos " + Pesos);
+        console.log("funcion error es igual " + diferencia);
     }
 }
 
